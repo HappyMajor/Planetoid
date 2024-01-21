@@ -2,10 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using System;
+
 public class PlanetoidNetMan : NetworkManager
 {
     public delegate void OnServerAddPlayerDelegate(GameObject player);
     public event OnServerAddPlayerDelegate onServerAddPlayerEvent;
+
+    public PrefabSpawnHandler[] prefabSpawnHandlers;
+
+    public override void Awake()
+    {
+        this.RegisterSpawnHandler();
+    }
+
     public override void OnServerAddPlayer(NetworkConnectionToClient conn)
     {
         Transform startPos = GetStartPosition();
@@ -22,4 +32,20 @@ public class PlanetoidNetMan : NetworkManager
 
         onServerAddPlayerEvent?.Invoke(player);
     }
+
+    private void RegisterSpawnHandler()
+    {
+        SpawnHandlerFactory factory = new SpawnHandlerFactory();
+        foreach(var handler in prefabSpawnHandlers)
+        {
+            factory.GetSpawnHandler(handler.spawnHandlerId).AttachToPrefab(handler.prefab);
+        }
+    }
+}
+
+[Serializable]
+public struct PrefabSpawnHandler
+{
+    public GameObject prefab;
+    public string spawnHandlerId;
 }

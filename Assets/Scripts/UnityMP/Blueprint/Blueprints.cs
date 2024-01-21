@@ -6,10 +6,6 @@ public class Blueprints
     private BlueprintFactory blueprintFactory;
     private BuildingStore buildingStore;
     private Blueprints() { 
-        buildingStore = new BuildingStore();
-        buildingStore.RegisterFactory(new ShelterFactory(), BuildingType.SHELTER);
-        buildingStore.RegisterFactory(new HQFactory(), BuildingType.HQ);
-        buildingStore.RegisterFactory(new ConstructionFactory(), BuildingType.CONSTRUCTION);
         blueprintFactory = new BlueprintFactory(buildingStore);
     }
 

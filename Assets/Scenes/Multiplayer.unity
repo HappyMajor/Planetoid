@@ -456,8 +456,8 @@ MonoBehaviour:
   - {fileID: 1770689019}
   commanders: []
   startBlueprints:
-  - bp_id_shelter
-  - bp_id_hq
+  - id_bp_shelter
+  - id_bp_hq
 --- !u!4 &1524680361
 Transform:
   m_ObjectHideFlags: 0
@@ -1124,6 +1124,18 @@ PrefabInstance:
       propertyPath: spawnPrefabs.Array.data[2]
       value: 
       objectReference: {fileID: 218943670215335961, guid: 25d3a8db11d240c43bc25dfc93e18a0e, type: 3}
+    - target: {fileID: 3335135436868743135, guid: f88f8a6b72656724484bc8bd647d858b, type: 3}
+      propertyPath: prefabSpawnHandlers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3335135436868743135, guid: f88f8a6b72656724484bc8bd647d858b, type: 3}
+      propertyPath: prefabSpawnHandlers.Array.data[0].prefab
+      value: 
+      objectReference: {fileID: 2116566389569381301, guid: da987a78cf664bc46becdbd5e9ee2987, type: 3}
+    - target: {fileID: 3335135436868743135, guid: f88f8a6b72656724484bc8bd647d858b, type: 3}
+      propertyPath: prefabSpawnHandlers.Array.data[0].spawnHandlerId
+      value: constructionSpawnHandler
+      objectReference: {fileID: 0}
     - target: {fileID: 5836799493660759104, guid: f88f8a6b72656724484bc8bd647d858b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -17.103617

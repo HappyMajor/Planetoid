@@ -9,12 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1737535761633982992}
-  - component: {fileID: 1197658763052440236}
-  - component: {fileID: 5944770171036158723}
   - component: {fileID: 3209182665019292454}
   - component: {fileID: -2382815977298115216}
   - component: {fileID: 3800896663732108617}
-  - component: {fileID: 8709563816031415402}
   - component: {fileID: 6525074473001637445}
   m_Layer: 7
   m_Name: Livestock
@@ -38,35 +35,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1197658763052440236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 453394533000543415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e5629056e44b4b4895297c98f4a0d09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  domainModel:
-    id: b622c0ba-7ae9-4afc-813b-c0b9a6c2a9a2
-    position: {x: 0, y: 0}
-  initializeSelf: 0
---- !u!114 &5944770171036158723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 453394533000543415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05e087c267030974997b3cf3528f751c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _modelComponent: {fileID: 1197658763052440236}
 --- !u!212 &3209182665019292454
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -159,19 +127,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &8709563816031415402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 453394533000543415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84db48875c255bd429d14d7e48fdd71e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _modelComponent: {fileID: 1197658763052440236}
 --- !u!58 &6525074473001637445
 CircleCollider2D:
   m_ObjectHideFlags: 0

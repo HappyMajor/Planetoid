@@ -15,7 +15,6 @@ public class BuildController : NetworkBehaviour
     public TreeMenu builderMenu;
     public GameObject buildPlaceholder;
     private BuildPlanningMode buildPlanningMode;
-    private BigBangController bigBangController;
     private CircleCollider2D circleCollider2D;
     private ISelectable selectable;
     public Ownable ownable;
@@ -100,15 +99,15 @@ public class BuildController : NetworkBehaviour
     public void Build(string blueprintid, float deg, float radius)
     {
         Blueprint bp = Blueprints.GetInstance().GetBlueprintById(blueprintid);
-        this.buildingContext.CreateBuilding(bp.Construction, deg, radius);
+        this.buildingContext.SpawnBuilding(bp.Construction, deg, radius);
     }
 
     public void StartBuildPlanningMode(Blueprint blueprint)
     {
         BuildingPrefabResolver buildingPrefabResolver = Component.FindAnyObjectByType<BuildingPrefabResolver>();
-        GameObject currentPlaceholder = GameObject.Instantiate(buildingPrefabResolver.Resolve(blueprint.BuildsTo));
+        GameObject currentPlaceholder = GameObject.Instantiate(buildingPrefabResolver.Resolve(Buildings.GetBuilding(blueprint.BuildsTo)));
         currentPlaceholder.transform.localScale = transform.localScale;
-        this.buildPlanningMode = new BuildPlanningMode(blueprint.Construction, 1, currentPlaceholder, GetComponent<PlanetController>(), blueprint.BlueprintId); 
+        this.buildPlanningMode = new BuildPlanningMode(blueprint.Construction, 1, currentPlaceholder, blueprint.BlueprintId); 
 
         this.buildPlanningMode.placeholder = currentPlaceholder;
 
@@ -175,14 +174,12 @@ public class BuildPlanningMode
     public Construction construction;
     public int heightLevel;
     public GameObject placeholder;
-    public PlanetController planetController;
 
-    public BuildPlanningMode(Construction construction, int heightLevel, GameObject placeholder, PlanetController planetController, string blueprintId)
+    public BuildPlanningMode(Construction construction, int heightLevel, GameObject placeholder, string blueprintId)
     {
         this.construction = construction;
         this.heightLevel = heightLevel;
         this.placeholder = placeholder;
-        this.planetController = planetController;
         this.blueprintId = blueprintId;
     }
 }

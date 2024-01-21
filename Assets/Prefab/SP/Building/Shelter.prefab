@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 10884388928716378}
-  - component: {fileID: -4997287464032980288}
-  - component: {fileID: -3322594021132725723}
   - component: {fileID: -3343726781039325997}
   m_Layer: 0
   m_Name: Shelter
@@ -35,32 +33,6 @@ Transform:
   - {fileID: 838829972868350706}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-4997287464032980288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 218943670215335961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0da5f35c812519e43b3e7f2a4192b908, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initializeSelf: 0
---- !u!114 &-3322594021132725723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 218943670215335961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1192a7bf645e45748a3b22126d6730c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _modelComponent: {fileID: -4997287464032980288}
 --- !u!114 &-3343726781039325997
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 10884388928716378}
-  - component: {fileID: -5602478072603530491}
-  - component: {fileID: 4987006187776964875}
   - component: {fileID: -5786312532910728703}
   m_Layer: 0
   m_Name: HQ
@@ -35,32 +33,6 @@ Transform:
   - {fileID: 2096198121430266056}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-5602478072603530491
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 218943670215335961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d11e36feefd6c484ea3c173c80ebd985, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initializeSelf: 0
---- !u!114 &4987006187776964875
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 218943670215335961}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 727a0f3e219f98843bfb5604dcb7540b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _modelComponent: {fileID: -5602478072603530491}
 --- !u!114 &-5786312532910728703
 MonoBehaviour:
   m_ObjectHideFlags: 0
