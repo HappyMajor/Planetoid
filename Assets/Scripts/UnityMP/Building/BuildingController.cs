@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BuildingController : NetworkBehaviour
+public class BuildingController : MonoBehaviour
 {
     [SerializeField]
     private Building building;

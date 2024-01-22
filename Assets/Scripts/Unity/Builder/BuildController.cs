@@ -99,7 +99,7 @@ public class BuildController : NetworkBehaviour
     public void Build(string blueprintid, float deg, float radius)
     {
         Blueprint bp = Blueprints.GetInstance().GetBlueprintById(blueprintid);
-        this.buildingContext.SpawnBuilding(bp.Construction, deg, radius);
+        this.buildingContext.SpawnBuildingAbsoluteDeg(bp.Construction, deg, radius);
     }
 
     public void StartBuildPlanningMode(Blueprint blueprint)
@@ -136,7 +136,6 @@ public class BuildController : NetworkBehaviour
         //    placeHolder.GetComponentInChildren<SpriteRenderer>().color = new Color(Color.red.r, Color.red.g, Color.red.b, 10);
         //} 
     }
-
 
     public void Update()
     {

@@ -7,42 +7,75 @@ using UnityEngine;
 
 namespace UnityMP
 {
-    public class ConstructionController : NetworkBehaviour
+    public class ConstructionController : NetworkBehaviour, IBuildingController
     {
         public Construction Construction { get => construction; set => OnModelSetServer(value); }
         private readonly PlanetoidLogger logger = new(typeof(ConstructionController), LogLevel.DEBUG);
 
-        [SerializeField]
-        [SyncVar (hook = "OnModelSyncedClient")]
         private Construction construction;
+        private PlanetController planetController;
+        private BuildingContext buildingContext;
 
         private SpriteMaskController spriteMaskController;
 
         public void Start()
         {
             this.spriteMaskController = transform.GetComponentInChildren<SpriteMaskController>();
+            this.planetController = transform.GetComponentInParent<PlanetController>();
+            this.buildingContext = transform.GetComponentInParent<BuildingContext>(); 
+
+            if(this.planetController == null)
+            {
+                throw new System.Exception("No planetcontroller found!");
+            }
+
+            if(this.buildingContext == null)
+            {
+                throw new System.Exception("No building context  found!");
+            }
+
         }
 
-        [Server]
         public void OnModelSetServer(Construction model)
         {
             this.construction = model;
             logger.Log("OnModelSetServer: " + model.BuildsTo);
+            OnModelSyncedClient(null, model);
+            this.construction.ConstructionFinishedEvent += OnConstructionFinished;
+            
+        }
+
+        public void OnConstructionFinished(Construction construction)
+        {
+            if(this.planetController.isServer)
+            {
+                PolarPosition polarPosition = this.buildingContext.GetPolarpositionOfBuilding(construction);
+                if(polarPosition == null)
+                {
+                    throw new System.Exception("For some dumb reason construction has no position / is probably not in the list of buildings / maybe this was called from the client??");
+                } else
+                {
+                    this.buildingContext.SpawnBuilding(Buildings.GetBuilding(this.construction.BuildsTo), polarPosition.Phi, polarPosition.R);
+                    this.buildingContext.UnspawnBuilding(this.construction);
+                }
+            }
         }
 
         public void Update()
         {
             if (this.construction != null)
             {
-                //Debug.Log("AddProgress");
-                this.construction.AddProgress(Time.deltaTime * 1000);
-                //Debug.Log("Progress: " + this.construction.Progress);
-                //Debug.Log("EndProgress " + this.construction.EndProgress);
-                this.spriteMaskController.slide = this.construction.Progress / this.construction.EndProgress;
+                if(this.construction.Progress < this.construction.EndProgress)
+                {
+                    //Debug.Log("AddProgress");
+                    this.construction.AddProgress(Time.deltaTime * 1000);
+                    //Debug.Log("Progress: " + this.construction.Progress);
+                    //Debug.Log("EndProgress " + this.construction.EndProgress);
+                    this.spriteMaskController.slide = this.construction.Progress / this.construction.EndProgress;
+                }
             }
         }
 
-        [Client]
         public void OnModelSyncedClient(Construction oldConstruction, Construction newConstruction)
         {
             Debug.Log("Builds to is: " + construction.BuildsTo);
@@ -63,6 +96,17 @@ namespace UnityMP
             } else
             {
                 Debug.LogError("ConstructionController OnModelSyncedClient Construction has not BuildsTO. Bad Data provided!");
+            }
+        }
+
+        public void SetBuilding(Building building)
+        {
+            if(building is Construction construction)
+            {
+                this.OnModelSetServer(construction);    
+            } else
+            {
+                throw new System.Exception("Bad data provided is not construction but is: " + building.GetType());  
             }
         }
     }

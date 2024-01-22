@@ -6,11 +6,10 @@ public class BuildingControllerResolver
     {
         if(building is Construction)
         {
-            UnityMP.ConstructionController controller = buildingObj.GetComponent<UnityMP.ConstructionController>();
-            if(controller != null)
-            {
-                controller.Construction = (Construction)building;
-            }
+        }
+        if(building is Shelter)
+        {
+            
         }
     }
 }

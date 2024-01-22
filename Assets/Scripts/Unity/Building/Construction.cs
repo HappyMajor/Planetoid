@@ -67,7 +67,7 @@ public class Construction : Building
         foreach(Livestock livestock in this.workers)
         {
             this.progress+= this.CalculateProgressInput(livestock, deltaTimeMillis);
-            if(this.progress >= this.EndProgress)
+            if (this.progress >= this.EndProgress)
             {
                 this.ConstructionFinishedEvent?.Invoke(this);
             }
